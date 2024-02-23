@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <form action="" method="POST" autocomplete="off">
+    {% csrf_token %}
+    {{ form.errors }}
+
+    <label for="{{ form.name.id_for_label }}">Nome do Livro</label>
+    {{ form.name }}
+    
+
+    <label for="{{ form.category.id_for_label }}">Categoria</label>
+    {{ form.category }}
+  
+    <label for="{{ form.isbn.id_for_label }}">Número de identificação</label>
+    {{ form.isbn }}
+    
+    <label for="{{ form.publication_year.id_for_label }}">Ano de Publicação</label>
+    {{ form.publication_year }}
+    
+
+    <label for="{{ form.edition.id_for_label }}">Edição</label>
+    {{ form.edition }}
+    
+
+    <label for="{{ form.pages_number.id_for_label }}">Número de Páginas</label>
+    {{ form.pages_number }}
+
+    <label for="{{ form.synopsis.id_for_label }}">Sinopse</label>
+    {{ form.synopsis }}
+    
+
+    <label for="{{ form.language.id_for_label }}">Idioma</label>
+    {{ form.language }}
+   
+    <label for="{{ form.quantity.id_for_label }}">Quantidade Disponível</label>
+    {{ form.quantity }}
+    
+
+    <button type="submit">Cadastrar Livro</button>
+  </form>
+</body>
+</html>
