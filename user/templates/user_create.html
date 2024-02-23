@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastre-se</title>
+</head>
+<body>
+    <form action="" method="post" autocomplete="off">
+      {% csrf_token %}
+      {{ form.errors }}
+
+      <label for="{{ form.first_name.id_for_label }}">Nome</label>
+      {{ form.first_name }}
+
+      <label for="{{ form.last_name.id_for_label }}">Sobrenome</label>
+      {{ form.last_name }}
+
+      <label for="{{ form.username.id_for_label }}">Usuário</label>
+      {{ form.username }}
+
+      <label for="{{ form.email.id_for_label }}">Email</label>
+      {{ form.email }}
+
+      <label for="{{ form.password1.id_for_label }}">Senha</label>
+      {{ form.password1 }}
+
+      <label for="{{ form.password2.id_for_label }}">Confirmação de Senha</label>
+      {{ form.password2 }}
+
+      <button type="submit">Cadastrar</button>
+    </form>
+</body>
+</html>
