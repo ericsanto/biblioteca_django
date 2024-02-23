@@ -6,11 +6,11 @@ class CategoryForm(forms.ModelForm):
 
     class Meta:
         model = Category
-        fiedls = '__all__'
+        fields = ('__all__')
 
 
 class BookForm(forms.ModelForm):
 
     class Meta:
         model = Book
-        fields = '__all__'
+        fields = ('__all__')
