@@ -4,6 +4,12 @@ from django.db import models
 class Category(models.Model):
     name = models.CharField('Nome', max_length=150)
 
+    class Meta:
+        verbose_name_plural = 'Categories'
+
+    def __str__(self):
+        return self.name
+
 
 LANGUAGES = (
     ('PT-BR', 'PORTUGUÊS(BRASIL)'),
@@ -22,9 +28,12 @@ class Book(models.Model):
     category = models.ForeignKey(
         Category, verbose_name='Categoria', on_delete=models.PROTECT)
     isbn = models.CharField('Número de identificação', max_length=255)
-    publication_year = models.DateField()
+    publication_year = models.DateField('Ano de  publicação')
     edition = models.CharField('Edição', max_length=4)
     pages_number = models.CharField('Número de páginas', max_length=4)
     synopsis = models.CharField('Sinopse', max_length=500)
     language = models.CharField('Idioma',  choices=LANGUAGES, max_length=255)
-    quantity = models.PositiveIntegerField()
+    quantity = models.PositiveIntegerField('Quantidade disponível')
+
+    def __str__(self):
+        return self.name
