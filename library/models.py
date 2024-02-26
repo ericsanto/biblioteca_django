@@ -1,4 +1,5 @@
 from django.db import models
+from PIL import Image
 
 
 class Category(models.Model):
@@ -9,18 +10,6 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-
-
-LANGUAGES = (
-    ('PT-BR', 'PORTUGUÊS(BRASIL)'),
-    ('EN-US', 'INGLÊS(ESTADOS UNIDOS)'),
-    ('ES', 'ESPANHOL'),
-    ('DE', 'ALEMÃO'),
-    ('EN-GB', 'INGLÊS(REINO UNIDO)'),
-    ('JA-JA', 'JAPONÊS'),
-    ('RU',  'RUSSO'),
-    ('ZH-TW', 'CHINÊS'),
-)
 
 
 class Author(models.Model):
@@ -47,10 +36,23 @@ class Book(models.Model):
     publication_year = models.DateField('Ano de  publicação')
     edition = models.CharField('Edição', max_length=4)
     pages_number = models.CharField('Número de páginas', max_length=4)
-    synopsis = models.CharField('Sinopse', max_length=500)
+    synopsis = models.TextField('Sinopse')
     language = models.CharField('Idioma',  choices=LANGUAGES, max_length=255)
     quantity = models.PositiveIntegerField('Quantidade disponível')
     author = models.ManyToManyField(Author)
+    image = models.ImageField(
+        verbose_name='Imagem', blank=True, null=True, upload_to='imglivros/')
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        if self.image:
+            img = Image.open(self.image.path)
+
+            new_width = 250
+            new_heigth = 200
+
+            img = img.resize((new_width, new_heigth), Image.ADAPTIVE)
+            img.save(self.image.path)
+        super().save(*args, **kwargs)
