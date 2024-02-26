@@ -56,3 +56,7 @@ class Book(models.Model):
             img = img.resize((new_width, new_heigth), Image.ADAPTIVE)
             img.save(self.image.path)
         super().save(*args, **kwargs)
+
+
+class History(models.Model):
+    about = models.TextField('Sobre a Biblioteca', blank=True, null=True)
