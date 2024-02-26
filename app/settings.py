@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'library',
     'user',
+    'reserve',
 ]
 
 MIDDLEWARE = [
@@ -130,3 +131,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'user.UserCustom'
+
+LOGIN_REDIRECT_URL = 'user_create'
+LOGIN_URL = 'login'
+LOGOUT_REDIRECT_URL = 'login'
