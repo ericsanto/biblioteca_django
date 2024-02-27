@@ -47,15 +47,15 @@ class Book(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
         if self.image:
             img = Image.open(self.image.path)
 
             new_width = 250
-            new_heigth = 200
+            new_heigth = 300
 
             img = img.resize((new_width, new_heigth), Image.ADAPTIVE)
             img.save(self.image.path)
-        super().save(*args, **kwargs)
 
 
 class History(models.Model):
