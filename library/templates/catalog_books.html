@@ -1,0 +1,47 @@
+{% extends 'home.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+{% block content %}
+
+
+
+<main id="catalog">
+  <div class="categories">
+    <h2 class="text">Categorias</h2>
+    {% for category in categories %}
+      <li class="list-categories"><a href="{% url 'catalog' %}?category={{category.name}}">{{category.name}}</a></li>
+    {% endfor %}
+    <li class="list-categories"><a href="{% url 'catalog' %}">Todos os livros</a></li>
+  </div>
+   
+  <div class="container-fluid">
+    <hr>
+    {% for book in books %}
+    <div class="card" style="width: 18rem;">
+      <img src="{{book.image.url}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h3 class="card-title">{{book.name}}</h3>
+        {% for author in book.author.all %}
+        <p class="card-text">Autor(s): {{author.name}}</p>
+        {% endfor %}
+        <p class="card-text">Edição: {{book.edition}}</p>
+        <a href="{% url 'book_detail' book.pk %}">Ver mais</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</main>
+{% endblock %}
+
+{% block newslatter %}
+{% endblock %}
+  
+</body>
+</html>
