@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <form action="" method="post" autocomplete="off">
+    {% csrf_token %}
+
+    <label for="{{ form.user.id_for_label }}">Usuário</label>
+    {{form.user}}
+
+    <label for="{{ form.book.id_for_label }}">Livro</label>
+    {{form.book}}
+
+    <button type="submit">Reservar</button>
+  </form>
+</body>
+</html>
