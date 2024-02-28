@@ -1,3 +1,4 @@
+{% extends 'home.html' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,8 +7,50 @@
   <title>Document</title>
 </head>
 <body>
-  {{ book.name }}
-  <img src="{{book.image.url}}" alt="">
-  {{ book.synopsis }}
+  {% block content %}
+    <section>
+      <div class="book-detail">
+        <h3>{{book.name}}</h3>
+        <div class="container-detail">
+            <img src="{{book.image.url}}" alt="">
+            
+            <p class="p-detail">{{book.synopsis}}</p>
+        </div>
+
+      </div>
+      <div class="informations">
+        <ul>
+          <li class="title-icons"><p>Data de publicação</p></li>
+          <li class="title-icons"><p>Idioma</p></li>
+          <li class="title-icons"><p>Número de páginas</p></li>
+          <li class="title-icons"><p>ISBN-10</p></li>
+          <li class="title-icons"><p>Categoria</p></li>
+        </ul>
+      
+        <ul class="ul-top">
+          <li class="icons-detail"><i class="fa fa-calendar"></i> {{book.publication_year}}</li>
+          <li class="icons-detail"><i class="fa fa-globe"></i> {{book.language}}</li>
+          <li class="icons-detail"><i class="fa fa-book"></i> {{book.pages_number}} páginas</li> 
+          <li class="icons-detail"><i class="fa fa-barcode"></i> {{book.isbn}}</li>
+          <li class="icons-detail"><i class="fa fa-list"></i> {{book.category.name}}</li>
+        </ul>
+      </div>
+
+      {% if book.quantity > 0 %}
+        <form action="{% url 'reserve_create' book.pk%}" method="post">
+          {% csrf_token %}
+
+          <button type="submit">Reservar</button>
+        </form>
+      {% else %}
+        <p>Este livro não está dispinível para agendamento </p>
+      {% endif %}
+    </section>
+
+
+  {% endblock %}
+
+  {% block newslatter %}
+  {% endblock %}
 </body>
 </html>
