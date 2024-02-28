@@ -1,4 +1,7 @@
 {% extends 'home.html' %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_messages %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,12 +12,10 @@
 <body>
 
 {% block content %}
-
-
+{{messages}}
 
 <main id="catalog">
   <div class="categories">
-    <h2 class="text">Categorias</h2>
     {% for category in categories %}
       <li class="list-categories"><a href="{% url 'catalog' %}?category={{category.name}}">{{category.name}}</a></li>
     {% endfor %}
