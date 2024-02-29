@@ -217,8 +217,9 @@ div.container-detail {
 p.p-detail {
   width: 50%;
   line-height: 20px;
-  margin-left: 100px;
+  margin-left: 30px;
   padding-top: 20px;
+  text-align: justify;
 }
 
 
@@ -237,4 +238,45 @@ li.icons-detail {
 
 div.informations {
  padding: 20px;
+}
+
+.checkout-reserve {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  height: 150px;
+  margin-left: 20px;
+  text-align: center;
+}
+
+.warner-message {
+  text-decoration: dotted ;
+  color: green;
+  font-size: 15px;
+}
+
+.disponibility {
+  background-color: transparent;
+  border-radius: 20px;
+  background-color: #f3a847;
+  padding: 10px;
+  margin-top: 20px;
+  border: transparent;
+  cursor: pointer;
+}
+
+.disponibility:hover {
+  background-color: #c28638;
+  transition: 0.3s all;
+}
+
+.not-disponibility {
+  color: red;
+  font-size: 15px;
+}
+
+.quantity {
+  font-size: 12px;
 }
