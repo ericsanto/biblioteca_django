@@ -6,6 +6,8 @@ class UserCustom(AbstractUser):
     email = models.EmailField('Email', max_length=255, unique=True)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
+    has_a_scheduling = models.BooleanField(
+        'Possui Agendamento?', default=False)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ('username', 'first_name', 'last_name',)
