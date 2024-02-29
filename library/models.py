@@ -41,7 +41,7 @@ class Book(models.Model):
     quantity = models.PositiveIntegerField('Quantidade disponível')
     author = models.ManyToManyField(Author)
     image = models.ImageField(
-        verbose_name='Imagem', blank=True, null=True, upload_to='imglivros/')
+        verbose_name='Imagem', upload_to='imglivros/')
 
     def __str__(self):
         return self.name
@@ -60,3 +60,4 @@ class Book(models.Model):
 
 class History(models.Model):
     about = models.TextField('Sobre a Biblioteca', blank=True, null=True)
+
