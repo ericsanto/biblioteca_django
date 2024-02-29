@@ -13,11 +13,24 @@
         <h3>{{book.name}}</h3>
         <div class="container-detail">
             <img src="{{book.image.url}}" alt="">
-            
             <p class="p-detail">{{book.synopsis}}</p>
-        </div>
 
+            <div class="checkout-reserve">
+              {% if book.quantity > 0 %}
+                <h3 class="warner-message">Disponível para reserva</h3>
+                <p class="quantity">Qtd: {{book.quantity}}</p>
+                <form action="{% url 'reserve_create' book.pk%}" method="post">
+                  {% csrf_token %}
+                  <button type="submit" class="disponibility">Reservar Livro</button>
+                </form>
+              {% else %}
+                <h3 class="not-disponibility"> Este Livro não está disponível para reserva</h3>
+                <p class="quantity">Qtd: {{book.quantity}}</p>
+              {% endif %}
+            </div>
+        </div>
       </div>
+
       <div class="informations">
         <ul>
           <li class="title-icons"><p>Data de publicação</p></li>
@@ -35,19 +48,7 @@
           <li class="icons-detail"><i class="fa fa-list"></i> {{book.category.name}}</li>
         </ul>
       </div>
-
-      {% if book.quantity > 0 %}
-        <form action="{% url 'reserve_create' book.pk%}" method="post">
-          {% csrf_token %}
-
-          <button type="submit">Reservar</button>
-        </form>
-      {% else %}
-        <p>Este livro não está dispinível para agendamento </p>
-      {% endif %}
     </section>
-
-
   {% endblock %}
 
   {% block newslatter %}
