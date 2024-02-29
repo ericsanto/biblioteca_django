@@ -1,19 +1,16 @@
-from django.db.models.query import QuerySet
-from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
+from django.shortcuts import redirect
+from django.views.generic import ListView
 from django.contrib import messages
 from .models import ReserveBook
-from .forms import ReserveBookForm
 from library.models import Book
+from user.models import UserCustom
 
 
 def reserve_book_create(request, book_id):
     if request.method == 'POST':
         book = Book.objects.get(id=book_id)
-        user = request.user
-        existing_reserve = ReserveBook.objects.filter(user=user).exists()
-        print(existing_reserve)
-        if not existing_reserve:
+        user = UserCustom.objects.get(email=request.user)
+        if not user.has_a_scheduling:
             reserve = ReserveBook.objects.create(
                 user=user,
                 book=book,
@@ -21,7 +18,45 @@ def reserve_book_create(request, book_id):
             reserve.save()
             book.quantity -= 1
             book.save()
+            user.has_a_scheduling = True
+            user.save()
+            messages.success(
+                request, f'Parabéns, você agendou o livo {book.name}')
             return redirect('catalog')
         else:
             messages.error(request, 'Você já tem um livro agendado')
             return redirect('catalog')
+
+
+def reserve_book_devolution(request, id_reserve):
+    reserve = ReserveBook.objects.get(id=id_reserve)
+    user = UserCustom.objects.get(email=request.user)
+
+    if user.has_a_scheduling:
+        user.has_a_scheduling = False
+        user.save()
+        reserve.book.quantity += 1
+        reserve.book.save()
+        reserve.devolution = True
+        reserve.save()
+        messages.success(request, f'Livro devolvido com sucesso.')
+        return redirect('catalog')
+    else:
+        messages.warning(request, 'Você não possui livro reservado')
+    return redirect('catalog')
+
+
+class ReserveBookListView(ListView):
+    model = ReserveBook
+    template_name = 'list_book_reserve.html'
+    context_object_name = 'books'
+
+    def get_queryset(self):
+        try:
+            user = self.request.user
+            resever_book_user = ReserveBook.objects.filter(
+                user=user)
+            return resever_book_user
+
+        except user.DoesNotExist:
+            messages.error(self.request, f'Usuário não existe')
