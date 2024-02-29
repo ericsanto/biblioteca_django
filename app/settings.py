@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'user',
     'reserve',
     'favorite',
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -136,3 +137,5 @@ AUTH_USER_MODEL = 'user.UserCustom'
 LOGIN_REDIRECT_URL = 'user_create'
 LOGIN_URL = 'login'
 LOGOUT_REDIRECT_URL = 'login'
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
