@@ -18,12 +18,14 @@ class CatalogBookListView(ListView):
     model = Book
     template_name = 'catalog_books.html'
     context_object_name = 'books'
+    paginate_by = 9
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
-        context['reserve'] = ReserveBook.objects.filter(
-            user=self.request.user)
+        if self.request.user.is_authenticated:
+            context['reserve'] = ReserveBook.objects.filter(
+                user=self.request.user)
         return context
 
     def get_queryset(self):
