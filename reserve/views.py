@@ -60,3 +60,25 @@ class ReserveBookListView(ListView):
 
         except user.DoesNotExist:
             messages.error(self.request, f'Usuário não existe')
+
+
+def renew_reserve_book(request, id_reserve):
+    if request.method == 'POST':
+        reserve = ReserveBook.objects.get(id=id_reserve)
+        print(reserve)
+
+        if reserve.renew_book == False:
+            reserve.renew_book = True
+            reserve.save()
+            messages.success(request, 'Livro renovado com sucesso')
+        else:
+            messages.warning(request, 'Você já renovou esse livro uma vez')
+        return redirect('catalog')
+    return redirect('catalog')
+
+
+"""def book_suggestion_based_on_research(request, id_book):
+    if request.method == 'GET':
+        book = Book.objects.get(id=id_book)
+        category_book = book.category
+        print(category_book)"""
