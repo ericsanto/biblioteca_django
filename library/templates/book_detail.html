@@ -49,6 +49,27 @@
         </ul>
       </div>
     </section>
+
+    <section>
+      <h3>Produtos relacionados a este item
+      </h3>
+
+      <div class="container">
+        {% for category_book in category_books %}
+          <div class="card" style="width: 18rem;">
+            <img src="{{category_book.image.url}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h3 class="card-title">{{category_book.name}}</h3>
+              {% for author in category_book.author.all %}
+              <p class="card-text">Autor(s): {{author.name}}</p>
+              {% endfor %}
+              <p class="card-text">Edição: {{category_book.edition}}</p>
+              <a href="{% url 'book_detail' category_book.pk %}">Ver mais</a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </section>
   {% endblock %}
 
   {% block newslatter %}
