@@ -17,6 +17,14 @@
           {% csrf_token %}
           <button type="submit">Devolver livro</button>
         </form>
+
+        {% if not book.renew_book %}
+        <form action="{% url 'renew_reserve' book.pk %}" method="post">
+          {% csrf_token %}
+
+          <button type="submit">Renovar reserva</button>
+        </form>
+        {% endif %}
         {% endif %}
     </div>
     {% endfor %}
