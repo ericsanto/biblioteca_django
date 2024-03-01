@@ -280,3 +280,13 @@ div.informations {
 .quantity {
   font-size: 12px;
 }
+/* FIM ESTILIZAÇÃO DA PÁGINA (book_detail.html) */
+
+
+/* ESTILIZAÇÃO DA PÁGINA (catalog_books.html) */
+.alert {
+  background-color: #cce5ff;
+  padding: 20px;
+  text-align: center;
+  align-items: center;
+}
