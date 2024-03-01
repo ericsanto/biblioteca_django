@@ -5,6 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
   <title>Document</title>
 </head>
@@ -24,7 +27,14 @@
       </div>
 
       <div class="button-login">
+        {% if not request.user.is_authenticated %}
         <a href="{% url 'login' %}" class="a-login">Olá, faça seu login</a>
+        {% else %}
+        <form action="{% url 'logout' %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn-logout">Encerrar sessão</button>
+        </form>
+        {% endif %}
       </div>
       
       <nav class="nav-top">
