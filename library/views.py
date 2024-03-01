@@ -1,8 +1,8 @@
-from django.shortcuts import render
 from django.views.generic import CreateView, DetailView, ListView, TemplateView
 from django.urls import reverse_lazy
 from .models import Book, Category, History
 from .forms import BookForm, CategoryForm
+from reserve.models import ReserveBook
 
 
 class HomeTemplateView(TemplateView):
@@ -22,6 +22,8 @@ class CatalogBookListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
+        context['reserve'] = ReserveBook.objects.filter(
+            user=self.request.user)
         return context
 
     def get_queryset(self):
@@ -55,3 +57,12 @@ class BookCreateView(CreateView):
 class BookDetailView(DetailView):
     model = Book
     template_name = 'book_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        id_book = self.kwargs['pk']
+        book = Book.objects.get(id=id_book)
+        category_book = book.category
+        context['category_books'] = Book.objects.filter(
+            category__name=category_book).exclude(id=id_book)
+        return context
