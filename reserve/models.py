@@ -14,6 +14,9 @@ class ReserveBook(models.Model):
     date_of_reserve = models.DateField(
         verbose_name='Data da reserva', blank=True, null=True)
     devolution = models.BooleanField('Devolvido', default=False)
+    renew_book = models.BooleanField('Renovado', default=False)
+    return_date_after_renew = models.DateField(
+        'Data de devolução após a renovação', blank=True, null=True)
 
     def __str__(self):
         return self.book.name
@@ -25,4 +28,11 @@ class ReserveBook(models.Model):
             self.devolution_deadline = date_actually + time_delta
 
         self.date_of_reserve = date.today()
+
+        if self.renew_book:
+            self.return_date_after_renew = self.devolution_deadline + \
+                timedelta(7)
+        else:
+            self.return_date_after_renew = None
+
         super().save(*args, **kwargs)
