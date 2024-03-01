@@ -52,6 +52,19 @@ nav.nav-top {
   align-items: center;
 }
 
+.btn-logout {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-logout:hover {
+  color: #f3a847;
+  transition: 0.8s all;
+}
+
 li.icons {
   padding: 5px;
   color: white;
@@ -289,4 +302,74 @@ div.informations {
   padding: 20px;
   text-align: center;
   align-items: center;
+}
+
+/* FIM DA ESTILIZAÇÃO DA PÁGINA (catalog_books.html) */
+
+.section-login {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 400px;
+}
+
+.img-login {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.imagem-top {
+  width: 40%;
+}
+
+.text-title-login {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 30px;
+}
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.form-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+input[type="password"] {
+  border-radius: 20px;
+  width: 300px;
+  padding: 10px;
+}
+
+input#id_username {
+  padding: 10px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.btn-login {
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: #f3a847;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-login:hover {
+  background-color: #c28638;
+  transition: 0.8s all;
+}
+
+h2.title-login {
+  font-family: 'Playfair Display', sans-serif;
+  font-size: 40px;
 }
