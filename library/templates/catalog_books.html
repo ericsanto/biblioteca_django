@@ -1,5 +1,6 @@
 {% extends 'home.html' %}
 {% load bootstrap4 %}
+{% load static %}
 {% bootstrap_css %}
 <!DOCTYPE html>
 <html lang="en" class="bootstrap-strict">
@@ -11,52 +12,47 @@
 <body>
 
 {% block content %}
-
-{% for msg in messages %}
-  <div class="alert">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <strong>Olá!</strong> {{msg}}
-  </div>
-{% endfor %}
-        
-  
-
-<main id="catalog">
-  <div class="categories">
-    {% for category in categories %}
-      <li class="list-categories"><a href="{% url 'catalog' %}?category={{category.name}}">{{category.name}}</a></li>
-    {% endfor %}
-    <li class="list-categories"><a href="{% url 'catalog' %}">Todos os livros</a></li>
-  </div>
-   
-  <div class="container-fluid">
-    <hr>
-    {% for book in books %}
-    <div class="card" style="width: 18rem;">
-      <a href="{% url 'book_detail' book.pk %}"><img src="{{book.image.url}}" class="card-img-top p-3" alt="..."></a>
-      <div class="card-body">
-        <a href="{% url 'book_detail' book.pk %}"><p class="card-title text-lg font-bold" id="p">{{book.name}}</p></a>
-        {% for author in book.author.all %}
-        <p class="card-text-p">Autor(s): {{author.name}}</p>
-        {% endfor %}
-        {% if book.quantity > 0 %}
-        <form action="{% url 'reserve_create' book.pk %}" method="post">
-          {%  csrf_token %}
-
-          <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">Reservar</button>
-        </form>
-        {% else %}
-        <p class="text-red-600">Indisponível para reserva</p>
-        {% endif %}
-      </div>
+  {% for msg in messages %}
+    <div class="alert">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Olá!</strong> {{msg}}
     </div>
-    {% endfor %}
+  {% endfor %}
+ 
+  <main id="catalog">
+    <div class="full-container flex flex-row justify-start">
+    <div class="categories">
+      {% for category in categories %}
+        <li class="list-categories ml-2"><a href="{% url 'catalog' %}?category={{category.name}}">{{category.name}}</a></li>
+      {% endfor %}
+      <li class="list-categories ml-2"><a href="{% url 'catalog' %}">Todos os livros</a></li>
+    </div>
+    
+    <div class="container-fluid">
+      <hr>
+      {% for book in books %}
+      <div class="card" style="width: 18rem;">
+        <a href="{% url 'book_detail' book.pk %}"><img src="{{book.image.url}}" class="card-img-top p-3" alt="..."></a>
+        <div class="card-body">
+          <a href="{% url 'book_detail' book.pk %}"><p class="card-title text-lg font-bold" id="p">{{book.name}}</p></a>
+          {% for author in book.author.all %}
+          <p class="card-text-p">Autor(s): {{author.name}}</p>
+          {% endfor %}
+          {% if book.quantity > 0 %}
+          <form action="{% url 'reserve_create' book.pk %}" method="post">
+            {%  csrf_token %}
+
+            <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">Reservar</button>
+          </form>
+          {% else %}
+          <p class="text-red-600">Indisponível para reserva</p>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
   </div>
 </main>
 {% endblock %}
-
-{% block newslatter %}
-{% endblock %}
-  
 </body>
 </html>
