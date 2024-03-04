@@ -2,7 +2,7 @@
 {% load bootstrap4 %}
 {% bootstrap_css %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="bootstrap-strict">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,14 +33,21 @@
     <hr>
     {% for book in books %}
     <div class="card" style="width: 18rem;">
-      <img src="{{book.image.url}}" class="card-img-top" alt="...">
+      <a href="{% url 'book_detail' book.pk %}"><img src="{{book.image.url}}" class="card-img-top p-3" alt="..."></a>
       <div class="card-body">
-        <h3 class="card-title">{{book.name}}</h3>
+        <a href="{% url 'book_detail' book.pk %}"><p class="card-title text-lg font-bold" id="p">{{book.name}}</p></a>
         {% for author in book.author.all %}
-        <p class="card-text">Autor(s): {{author.name}}</p>
+        <p class="card-text-p">Autor(s): {{author.name}}</p>
         {% endfor %}
-        <p class="card-text">Edição: {{book.edition}}</p>
-        <a href="{% url 'book_detail' book.pk %}">Ver mais</a>
+        {% if book.quantity > 0 %}
+        <form action="{% url 'reserve_create' book.pk %}" method="post">
+          {%  csrf_token %}
+
+          <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">Reservar</button>
+        </form>
+        {% else %}
+        <p class="text-red-600">Indisponível para reserva</p>
+        {% endif %}
       </div>
     </div>
     {% endfor %}
