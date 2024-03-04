@@ -8,26 +8,29 @@
 </head>
 <body>
   {% block content %}
-  {% for book in books %}  
-    <div>
-        <p>{{ book.book.name }}</p>
-        <img src="{{book.book.image.url}}" alt="">
+  <div class="container-fluid">
+    {% for book in books %}
+    <div class="card" style="width: 18rem;">
+      <img src="{{book.book.image.url}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <p class="card-title text-lg font-bold">{{book.book.name}}</p>
+        {% for author in book.book.author.all %}
+        <p class="card-text">Autor(s): {{author.name}}</p>
         {% if not book.devolution %}
-        <form action="{% url 'reserve_devolution' book.pk %}" method="post">
-          {% csrf_token %}
-          <button type="submit">Devolver livro</button>
-        </form>
+          <form action="{% url 'reserve_devolution' book.pk %}" method="post">
+            {% csrf_token %}
 
-        {% if not book.renew_book %}
-        <form action="{% url 'renew_reserve' book.pk %}" method="post">
-          {% csrf_token %}
-
-          <button type="submit">Renovar reserva</button>
-        </form>
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Devolver Livro</button>
+          </form>
         {% endif %}
-        {% endif %}
+        {% endfor %}
+      </div>
     </div>
-    {% endfor %}
-  {% endblock %}
+  {% endfor %}
+</div>
+{% endblock %}
+
+{% block newslatter %}
+{% endblock %}
 </body>
 </html>
