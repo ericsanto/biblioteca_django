@@ -10,7 +10,7 @@
   {% block content %}
     <section>
       <div class="book-detail">
-        <h3>{{book.name}}</h3>
+        <p class="text-lg font-bold">{{book.name}}</h3>
         <div class="container-detail">
             <img src="{{book.image.url}}" alt="">
             <p class="p-detail">{{book.synopsis}}</p>
@@ -59,7 +59,7 @@
           <div class="card" style="width: 18rem;">
             <img src="{{category_book.image.url}}" class="card-img-top" alt="...">
             <div class="card-body">
-              <h3 class="card-title">{{category_book.name}}</h3>
+              <p class="card-title text-lg font-bold">{{category_book.name}}</p>
               {% for author in category_book.author.all %}
               <p class="card-text">Autor(s): {{author.name}}</p>
               {% endfor %}
