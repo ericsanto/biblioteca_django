@@ -14,6 +14,7 @@
   <title>Document</title>
 </head>
 <body>
+
   {% block header %}
     <header>
       <div class="logo">
@@ -44,7 +45,7 @@
         <a href=""><li class="icons"><i class="fab fa-twitter"></i></li></a>
         <a href=""><li class="icons"><i class="fab fa-linkedin-in"></i></li></a>
         <a href=""><li class="icons"><i class="fab fa-facebook"></i></li></a>
-    </nav>
+      </nav>
     
     </header>
     <nav class="nav-second">
@@ -54,47 +55,95 @@
       <a href=""><li class="buttons-header">Notícias</li></a>
       <a href=""><li class="buttons-header">Gestão</li></a>
       {% if request.user.is_authenticated %}
-      <a href="{% url 'book_reserve' user.pk %}">Meus livros reservados</a>
+      <a href="{% url 'book_reserve' user.pk %}" class="text-white">Meus livros reservados</a>
       {% endif %}
     </nav>
   {% endblock %}
 
   {% block content %}
     <main>
-      <div class="image-library">
-        <img src="{% static 'images/biblioteca.jpg'%}" class="img-library" alt="">
-      </div>
-
-      <h2 class="title">A Biblioteca</h2>
-    
-      <div class="text-about-library"> 
-        {% for history in historys %}
-          <p class="paragraph">{{history.about}}</p>
-        {% endfor %}
-        <img src="{% static 'images/esta_bibli.jpg' %}" class="into-biblioteca" alt="">  
-      </div>
-
-      <section>
-        <div class="container">
-          <img src="{% static 'images/download.jpeg' %}" class="second-image" alt="">
-          <p class="paragraph">Além dos livros, a biblioteca também disponibiliza revistas, jornais e material audiovisual, proporcionando uma experiência de leitura completa. Os usuários podem encontrar desde as últimas novidades literárias até obras raras e coleções especiais, permitindo que cada visita seja uma nova descoberta.
-
-            Para tornar a experiência ainda mais enriquecedora, a biblioteca oferece uma série de serviços e atividades para a comunidade. Isso inclui programas de incentivo à leitura, como clubes do livro e contação de histórias para crianças, além de palestras, exposições e workshops sobre diversos temas.
-            
-            Com um ambiente acolhedor e equipe dedicada, a Biblioteca Municipal "Leitura para Todos" é mais do que um local de empréstimo de livros. É um espaço de encontro, aprendizagem e descoberta, onde pessoas de todas as idades podem se conectar com o mundo da leitura e da cultura.
-          </p>
+        <div class="image-library flex flex-col w-full justify-center items-center">
+          <img src="{% static 'images/biblioteca.jpg'%}" class="img-library w-full" alt="">
         </div>
-    </section>
+
+        <h2 class="title">A Biblioteca</h2>
+      
+        <div class="text-about-library"> 
+          {% for history in historys %}
+            <p class="paragraph">{{history.about}}</p>
+          {% endfor %}
+          <img src="{% static 'images/esta_bibli.jpg' %}" class="into-biblioteca" alt="">  
+        </div>
+          <div class="container">
+            <img src="{% static 'images/download.jpeg' %}" class="second-image" alt="">
+            <p class="paragraph">Além dos livros, a biblioteca também disponibiliza revistas, jornais e material audiovisual, proporcionando uma experiência de leitura completa. Os usuários podem encontrar desde as últimas novidades literárias até obras raras e coleções especiais, permitindo que cada visita seja uma nova descoberta.
+
+              Para tornar a experiência ainda mais enriquecedora, a biblioteca oferece uma série de serviços e atividades para a comunidade. Isso inclui programas de incentivo à leitura, como clubes do livro e contação de histórias para crianças, além de palestras, exposições e workshops sobre diversos temas.
+              
+              Com um ambiente acolhedor e equipe dedicada, a Biblioteca Municipal "Leitura para Todos" é mais do que um local de empréstimo de livros. É um espaço de encontro, aprendizagem e descoberta, onde pessoas de todas as idades podem se conectar com o mundo da leitura e da cultura.
+            </p>
+          </div>
     </main>
   {% endblock %}
 
-  {% block newslatter  %}
-    <div class="news-latter">
-      <div class="text">
-        <h3>Cadastre-se para receber nossa newsletter</h3>
-      </div>
+  {% block footer %}
+
+    <div class="flex flex-col justify-center items-center m-auto p-2">
+      <a href="{% url 'home' %}" class="text-white ">Voltar ao inicio</a>
     </div>
+
+    <div class="footer flex flex-col">
+      <div class="flex flex-row justify-around items-center pt-16 pb-16 text-sm">
+          <ul class="flex flex-col pl-12 text-white">
+            <p class="text-white font-bold pb-3 text-base">Conheça-nos</p>
+            <li><a href="">Sobre a Biblioteca</a></li>
+            <li><a href="">Informações corporativas</a></li>
+            <li><a href="">Comunidade</a></li>
+            <li><a href="">Acessibilidade</a></li>
+            <li><a href=""></a></li>
+          </ul>
+          <div class="flex flex-col justify-center items-center text-white">
+            <ul class="flex flex-col text-base">
+              <p class="text-white font-bold pb-3">Mais cultura e mais leitura</p>
+              <li><a href="">Projeto Leia Mais</a></li>
+              <li><a href="">Projeto Música para todos</a></li>
+              <li><a href="">Paletra sobre cultura indígena</a></li>
+            </ul>
+          </div>
+          <div class="flex flex-row justify-center items-center">
+            <ul class="flex flex-col text-white">
+              <p class="text-white font-bold pb-3 text-base">
+                Meios de Reserva
+              </p>
+              <li><a href="">Como reservar livro</a></li>
+              <li><a href="">Gahe pontos reservando livro</a></li>
+              <li><a href="">Obtenha o cartão da biblioteca</a></li>
+            </ul>
+          </div>
+          <div class="flex flex-row justify-center items-center">
+            <nav class="flex flex-col text-white text-base">
+              <p class="font-bold pb-3">Nossas redes sociais</p>
+              <a href=""><li class="icons"><i class="fab fa-instagram"></i> Instagram</li></a>
+              <a href=""><li class="icons"><i class="fab fa-twitter"></i> Twitter</li></a>
+              <a href=""><li class="icons"><i class="fab fa-linkedin-in"> Linkedin</i></li></a>
+              <a href=""><li class="icons"><i class="fab fa-facebook"></i> Facebook</li></a>
+            </nav>
+          </div>
+      </div>
+      <hr>
+      <div class="flex justify-center items-center">
+        <img src="{% static 'images/3.png' %}" alt="" class="w-40">
+      </div>
+      <div class="flex flex-col justify-center items-center text-sm text-white pt-16">
+        <p class="pb-16">© 2021-2024 Biblioteca.com, Inc. ou suas afiliadas</p>
+        <p class="pb-16">Amazon Serviços de Varejo do Brasil Ltda. | CNPJ 15.436.940/0001-03</p>
+        <p>Av. Juscelino Kubitschek, 2041, Torre E, 18° andar - São Paulo CEP: 04543-011| Fale conosco| ajuda-amazon@amazon.com.b</p>
+      </div>
+      </div>
   {% endblock %}
+ 
+
+  
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
