@@ -21,11 +21,11 @@
  
   <main class="flex flex-col mb-15">
     <div class="flex flex-row justify-start">
-    <div class="categories">
+    <div class="categories h-full">
       {% for category in categories %}
-        <li class="list-categories ml-2"><a href="{% url 'catalog' %}?category={{category.name}}">{{category.name}}</a></li>
+        <li class="list-categories ml-2"><a href="{% url 'catalog' %}?category={{category.name}}" class="text-sm">{{category.name}}</a></li>
       {% endfor %}
-      <li class="list-categories ml-2"><a href="{% url 'catalog' %}">Todos os livros</a></li>
+      <li class="list-categories ml-2"><a href="{% url 'catalog' %}" class="text-sm">Todos os livros</a></li>
     </div>
     
     <div class=" flex flex-row justify-between flex-wrap">
