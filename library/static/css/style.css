@@ -312,6 +312,21 @@ div.informations {
 .quantity {
   font-size: 12px;
 }
+
+input#form.as_p {
+  background-color: #131920;
+}
+
+textarea#id_comment_user {
+  width: 500px;
+  height: 30px;
+  
+}
+
+div.flex.flex-col.items-center.justify-center.w-25.text-center {
+  border: 1px solid black;
+}
+
 /* FIM ESTILIZAÇÃO DA PÁGINA (book_detail.html) */
 
 
