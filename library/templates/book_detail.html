@@ -48,6 +48,7 @@
           <li class="icons-detail"><i class="fa fa-list"></i> {{book.category.name}}</li>
         </ul>
       </div>
+      <hr>
     </section>
 
     <section>
@@ -67,6 +68,32 @@
           </div>
         {% endfor %}
       </div>
+      <hr>
+
+      <article class="flex flex-row justify-between items-center">
+      <div class="flex flex-col items-center justify-center w-2/5 text-center">
+        <p class="pb-12">O que achou do livro? Deixe sua opinião e ajude outras pessoas que estão com dúvidas de escolher o livro</p>
+        <form action="" method="post" autocomplete="off" class="flex flex-col ">
+          {% csrf_token %}
+
+          {{ form.comment_user }}
+          <button type="submit" class="ml-4">Comentar</button>
+        </form>
+      </div>
+
+      
+      <div class="flex flex-col justify-center items-center">
+        {% for comment in comments %}
+        <div class=" flex flex-col justify-center items-center">
+          {{ comment.user.first_name }}
+          {{ comment.comment_user }}
+        </div>
+        {% endfor %}
+      </div>
+      
+
+      
+    </article>
     </section>
   {% endblock %}
 
