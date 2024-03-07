@@ -25,7 +25,8 @@ urlpatterns = [
     path('user/', include('user.urls')),
     path('favorite/', include('favorite.urls')),
     path('reserve/', include('reserve.urls')),
-    path('', include('reset_password.urls'))
+    path('', include('reset_password.urls')),
+    path('', include('comment.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
