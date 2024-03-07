@@ -327,6 +327,15 @@ div.flex.flex-col.items-center.justify-center.w-25.text-center {
   border: 1px solid black;
 }
 
+div#comment {
+  width: 1000px;
+}
+
+a.w-full.border.border-black.rounded-full.text-center.m-8:hover {
+  background-color: darkgray;
+  color: #131920;
+}
+
 /* FIM ESTILIZAÇÃO DA PÁGINA (book_detail.html) */
 
 
@@ -340,6 +349,8 @@ div.flex.flex-col.items-center.justify-center.w-25.text-center {
 
 /* FIM DA ESTILIZAÇÃO DA PÁGINA (catalog_books.html) */
 
+
+/* INICIO DA ESTILIZAÇÃO DA PÁGINA (login.html) */
 .section-login {
   display: flex;
   flex-direction: column;
@@ -381,7 +392,6 @@ input[type="password"] {
   border-radius: 20px;
   width: 300px;
   padding: 10px;
-  border-color: #131920;
 }
 
 input#id_username {
@@ -431,4 +441,3 @@ button.btn.btn-primary.p-2.w-24.m-5:hover {
 div.container-reset {
   height: 400px;
 }
-
