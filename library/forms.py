@@ -16,8 +16,3 @@ class BookForm(forms.ModelForm):
         fields = ('__all__')
 
 
-class CommentBookForm(forms.ModelForm):
-
-    class Meta:
-        model = Comment
-        fields = ('comment_user',)
