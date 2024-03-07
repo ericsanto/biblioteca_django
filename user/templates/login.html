@@ -9,7 +9,7 @@
 </head>
 <body>
   {% block content %}
-  <section class="section-login">
+  <main class="flex flex-col justify-center items-center w-auto h-auto pb-12">
    
     <div class="img-login">
       <img src="{% static 'images/3.png' %}" alt="" class="imagem-top">
@@ -28,12 +28,12 @@
 
         <label for="{{ form.password.id_for_label }}" class="label-login">Senha</label>
         {{ form.password }}
-
+        <a href="{% url 'reset_password' %}" class="mb-5">Esqueci senha</a>
         <button type="submit" class="btn-login">Login</button>
       </form>
-      <a href="{% url 'reset_password' %}">Esqueci senha</a>
     </div>
-  </section>
+   
+  </main>
   {% endblock %}
 
   {% block newslatter %}
