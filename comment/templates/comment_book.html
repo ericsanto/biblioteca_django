@@ -1,0 +1,28 @@
+{% extends 'home.html' %}
+
+
+{% block content %}
+
+  <main class="flex flex-col">
+    <div class="flex flex-col justify-center items-center m-12">
+      <p class="text-xl font-bold">Adicionar Comentário</p>
+    </div>
+    <div class="flex flex-row w-full justify-between items-center">
+      <form action="" method="post" autocomplete="off" class="flex flex-col justify-center w-6/12 m-12">
+        {% csrf_token %}
+
+        {{ form.comment_user }}
+        <button type="submit" class="mt-2 w-6/12" id="button-comment">Comentar</button>
+      </form>
+      {% for book in book %}
+    <div class="flex flex-col items-center">
+      
+      <img src="{{book.image.url}}" alt="" class="mr-12
+      ">
+      <p class="text-base mr-12 font-bold pt-2">{{book.name}}</p>
+    </div>
+    {% endfor %}
+    </div>
+    
+</main>
+{% endblock %}
