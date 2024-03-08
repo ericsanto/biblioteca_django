@@ -76,10 +76,29 @@
         </ul>
       </div>
       <hr>
+
+      <article class="mt-5">
+        {% if book.image_detail %}
+          <div class="flex flex-col justify-center items-center mb-12">
+            <img src="{{book.image_detail.url}}" alt="">
+          </div>
+          <hr>
+        {% endif %}
+
+        <div class="flex flex-col justify-center items-start mt-12 mb-12">
+          <p class="font-bold text-lg ml-12 pb-10">Sobre o autor</p>
+          <hr>
+          {%  for author in book.author.all %}
+            <p class="ml-12">{{author.description}}</p>
+          {% endfor %}
+        </div>
+      </article>
+      
     </section>
 
     <section>
-      <p class="text-xl font-bold ml-12">Produtos relacionados a este item
+      <hr>
+      <p class="text-xl font-bold ml-12 pt-12">Produtos relacionados a este item
       </p>
 
       <div class="container">
@@ -106,15 +125,19 @@
       
       
         <div id="comment" class="flex flex-col justify-center items-center pl-10 pt-5">
+          {% if comment %}
           {% for comment in comment %}
             <div class=" flex flex-col justify-center items-start w-11/12 pb-10">
               <div class="flex flex-row justify-center items-center">
-                <img src="{% static 'images/3.png' %}" alt="" class="w-12 rounded-b-3xl">
+                <img src="{% static 'images/default.jpeg' %}" alt="" class="w-8 rounded-b-3xl mr-2">
                 <p class="text-sm font-bold">{{comment.user.first_name}} {{comment.user.last_name}}</p>
               </div>
               <p class="text-sm">{{ comment.comment_user }}</p>
             </div>
           {% endfor %}
+          {% else %}
+            <p>Nenum comentário foi atríbuido a este livro</p>
+          {% endif %}
         </div>
     </article>
   </section>
