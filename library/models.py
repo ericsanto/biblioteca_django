@@ -15,6 +15,11 @@ class Category(models.Model):
 
 class Author(models.Model):
     name = models.CharField('Autor', max_length=255)
+    description = models.TextField(
+        'Descrição', max_length=255)
+
+    def __str__(self):
+        return self.name
 
 
 LANGUAGES = (
@@ -43,6 +48,8 @@ class Book(models.Model):
     author = models.ManyToManyField(Author)
     image = models.ImageField(
         verbose_name='Imagem', upload_to='imglivros/')
+    image_detail = models.ImageField(
+        blank=True, null=True, upload_to='img_detail_books/')
 
     def __str__(self):
         return self.name
