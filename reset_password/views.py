@@ -9,7 +9,7 @@ class CustomPasswordResetView(PasswordResetView):
 
 
 class CustomResetPasswordDone(PasswordResetDoneView):
-    template_name = 'registratiom/password_reset_done.html'
+    template_name = 'registration/password_reset_done.html'
 
 
 class CustomPasswordResetConfirmView(PasswordResetConfirmView):
