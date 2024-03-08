@@ -4,6 +4,12 @@ from user.models import UserCustom
 from datetime import date, timedelta
 
 
+STATUS = (
+    ('DEVOLVIDO', 'Devolvido'),
+    ('RESERVADO', 'Reservado')
+)
+
+
 class ReserveBook(models.Model):
     user = models.ForeignKey(
         UserCustom, on_delete=models.PROTECT, verbose_name='Usuário')
@@ -36,3 +42,5 @@ class ReserveBook(models.Model):
             self.return_date_after_renew = None
 
         super().save(*args, **kwargs)
+
+
