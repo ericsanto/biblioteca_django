@@ -9,37 +9,40 @@
 <body>
   {% block content %}
   <main class="flex flex-col justify-center items-center mb-5 w-auto h-auto">
+  {% if books %}
   <div class="flex flex-row flex-wrap justify-center items-center ">
     {% for book in books %}
-    <div class="card" style="width: 18rem;">
-      <img src="{{book.book.image.url}}" class="card-img-top" alt="...">
-      <div class="card-body">
-        <p class="card-title text-lg font-bold">{{book.book.name}}</p>
-        {% for author in book.book.author.all %}
-        <p class="card-text">Autor(s): {{author.name}}</p>
-        {% if not book.devolution %}
-          <form action="{% url 'reserve_devolution' book.pk %}" method="post">
-            {% csrf_token %}
-
-            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Devolver Livro</button>
-          </form>
-        {% else %}
-        <p>Devolvido</p>
-        {% endif %}
-        {% if not book.renew_book and not book.devolution  %}
-          <form action="{% url 'renew_reserve' book.pk %}" method="post">
+      <div class="card" style="width: 18rem;">
+        <img src="{{book.book.image.url}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <a href="{% url 'book_detail' book.book.pk %}"><p class="card-title text-lg font-bold">{{book.book.name}}</p></a>
+          {% for author in book.book.author.all %}
+          <p class="card-text">Autor(s): {{author.name}}</p>
+          {% if not book.devolution %}
+            <form action="{% url 'reserve_devolution' book.pk %}" method="post">
               {% csrf_token %}
 
+              <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Devolver Livro</button>
+            </form>
+          {% else %}
+          <p>Devolvido</p>
+          {% endif %}
+          {% if not book.renew_book and not book.devolution  %}
+            <form action="{% url 'renew_reserve' book.pk %}" method="post">
+              {% csrf_token %}
               <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-5">Renovar</button>
-          </form>
-        {% endif %}
-        {% endfor %}
+            </form>
+          {% endif %}
+          {% endfor %}
+        </div>
       </div>
-    </div>
-  {% endfor %}
-</div>
-</main>
-{% endblock %}
+    {% endfor %}
+  </div>
+  {% else %}
+    <p> Nenhum livro cadastrado</p>
+  {% endif %}
+  </main>
+  {% endblock %}
 
 </body>
 </html>
