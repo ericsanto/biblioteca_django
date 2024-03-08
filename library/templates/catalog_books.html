@@ -21,38 +21,47 @@
  
   <main class="flex flex-col mb-15">
     <div class="flex flex-row justify-start">
-    <div class="categories h-full">
-      {% for category in categories %}
-        <li class="list-categories ml-2"><a href="{% url 'catalog' %}?category={{category.name}}" class="text-sm">{{category.name}}</a></li>
-      {% endfor %}
-      <li class="list-categories ml-2"><a href="{% url 'catalog' %}" class="text-sm">Todos os livros</a></li>
+      {% if categories %}
+        <div class="categories h-full">
+          {% for category in categories %}
+            <li class="list-categories ml-2"><a href="{% url 'catalog' %}?category={{category.name}}" class="text-sm">{{category.name}}</a></li>
+          {% endfor %}
+          <li class="list-categories ml-2"><a href="{% url 'catalog' %}" class="text-sm">Todos os livros</a></li>
+      {% else %}
+          <p>Nenuma categoria cadastrada</p>
+      {% endif %}
     </div>
     
-    <div class=" flex flex-row justify-between flex-wrap">
-      <hr>
-      {% for book in books %}
-      <div class="card" style="width: 18rem;">
-        <a href="{% url 'book_detail' book.pk %}"><img src="{{book.image.url}}" class="card-img-top p-3" alt="..."></a>
-        <div class="card-body">
-          <a href="{% url 'book_detail' book.pk %}"><p class="card-title text-lg font-bold" id="p">{{book.name}}</p></a>
-          {% for author in book.author.all %}
-          <p class="card-text-p">Autor(s): {{author.name}}</p>
-          {% endfor %}
-          {% if book.quantity > 0 %}
-          <form action="{% url 'reserve_create' book.pk %}" method="post">
-            {%  csrf_token %}
 
-            <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">Reservar</button>
-          </form>
-          {% else %}
-          <p class="text-red-600">Indisponível para reserva</p>
-          {% endif %}
+      <div class=" flex flex-row justify-between flex-wrap">
+        <hr>
+        {% if books %}
+        {% for book in books %}
+        <div class="card" style="width: 18rem;">
+          <a href="{% url 'book_detail' book.pk %}"><img src="{{book.image.url}}" class="card-img-top p-3" alt="..."></a>
+          <div class="card-body">
+            <a href="{% url 'book_detail' book.pk %}"><p class="card-title text-lg font-bold" id="p">{{book.name}}</p></a>
+            {% for author in book.author.all %}
+            <p class="card-text-p">Autor(s): {{author.name}}</p>
+            {% endfor %}
+            {% if book.quantity > 0 %}
+            <form action="{% url 'reserve_create' book.pk %}" method="post">
+              {%  csrf_token %}
+
+              <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">Reservar</button>
+            </form>
+            {% else %}
+            <p class="text-red-600">Indisponível para reserva</p>
+            {% endif %}
+          </div>
         </div>
+        {% endfor %}
+        {% else %}
+          <p>Nenhum livro cadastrado</p>
+        {% endif %}
       </div>
-      {% endfor %}
     </div>
-  </div>
-</main>
+  </main>
 {% endblock %}
 </body>
 </html>
