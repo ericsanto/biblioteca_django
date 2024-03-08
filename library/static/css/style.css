@@ -441,3 +441,21 @@ button.btn.btn-primary.p-2.w-24.m-5:hover {
 div.container-reset {
   height: 400px;
 }
+/* FIM DA ESTILIZAÇÃO DA PÁGINA (login.html) */
+
+/* INICIO DA ESTILIZAÇÃO DA PÁGINA (comment_book.html) */
+
+textarea#id_comment_user {
+  border: solid 1px black;
+  width: 100%;
+  height: auto;
+}
+
+button#button-comment {
+  background-color: #f3a847;
+  border-radius: 20px;
+}
+
+button#button-comment:hover {
+  background-color: #c28638;
+}
