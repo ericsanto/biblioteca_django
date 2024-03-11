@@ -148,8 +148,6 @@ img.second-image {
 
 div.card {
   text-align: center;
-  padding: 20px;
-  margin-left: 30px;
   margin-bottom: 20px;
 }
 
@@ -179,9 +177,7 @@ div.container-fluid {
 div.categories {
   display: flex;
   flex-direction: column;
-  height: 900px;
   text-align: inherit;
-  background-color: #FAFAFA;
   padding-top: 20px;
 }
 
@@ -301,6 +297,22 @@ div.informations {
 
 .disponibility:hover {
   background-color: #c28638;
+  color: white;
+  font-weight: bold;
+  transition: 0.3s all;
+}
+
+a.down_pdf { 
+  background-color: #32CD32;
+  padding: 10px;
+  border-radius: 20px;
+  margin-top: 10px;
+}
+
+a.down_pdf:hover {
+  background-color: #228B22;
+  color: white;
+  font-weight: bold;
   transition: 0.3s all;
 }
 
@@ -345,6 +357,22 @@ a.w-full.border.border-black.rounded-full.text-center.m-8:hover {
   padding: 20px;
   text-align: center;
   align-items: center;
+}
+
+.list-categories.ml-2 {
+  border: solid 0.5px #d2dce3;
+} 
+
+.list-categories.ml-2:hover {
+  background-color: #c28638;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.text-sm:hover {
+  color: white;
+  font-weight: bold;
 }
 
 /* FIM DA ESTILIZAÇÃO DA PÁGINA (catalog_books.html) */
@@ -459,3 +487,5 @@ button#button-comment {
 button#button-comment:hover {
   background-color: #c28638;
 }
+
+
