@@ -50,9 +50,13 @@
                   {% csrf_token %}
                   <button type="submit" class="disponibility">Reservar Livro</button>
                 </form>
+               
               {% else %}
                 <h3 class="not-disponibility"> Este Livro não está disponível para reserva</h3>
                 <p class="quantity">Qtd: {{book.quantity}}</p>
+              {% endif %}
+              {% if book.pdf_books %}
+              <a href="{% url 'download_pdf' book.pk %}" class="down_pdf">Download em PDF</a>
               {% endif %}
             </div>
         </div>
