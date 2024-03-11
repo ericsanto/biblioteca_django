@@ -16,7 +16,7 @@ class Category(models.Model):
 class Author(models.Model):
     name = models.CharField('Autor', max_length=255)
     description = models.TextField(
-        'Descrição', max_length=255)
+        'Descrição')
 
     def __str__(self):
         return self.name
@@ -50,6 +50,8 @@ class Book(models.Model):
         verbose_name='Imagem', upload_to='imglivros/')
     image_detail = models.ImageField(
         blank=True, null=True, upload_to='img_detail_books/')
+    pdf_books = models.FileField(
+        'PDF', blank=True, null=True, upload_to='documents/')
 
     def __str__(self):
         return self.name
