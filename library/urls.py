@@ -4,7 +4,8 @@ from .views import (
     BookDetailView,
     CategoryCreateView,
     CatalogBookListView,
-    HomeTemplateView
+    HomeTemplateView,
+    download_pdf,
 )
 
 
@@ -15,4 +16,5 @@ urlpatterns = [
     path('cadastrar-livro/', BookCreateView.as_view(), name='create_book'),
     path('catalogo/', CatalogBookListView.as_view(), name='catalog'),
     path('detalhe-livro/<int:pk>/', BookDetailView.as_view(), name='book_detail'),
+    path('baixar-pdf/<book_id>/', download_pdf, name='download_pdf'),
 ]
