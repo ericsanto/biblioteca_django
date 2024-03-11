@@ -21,19 +21,32 @@
  
   <main class="flex flex-col mb-15">
     <div class="flex flex-row justify-start">
-      {% if categories %}
-        <div class="categories h-full">
+      {% if categories %} 
+        <div class="categories h-auto text-center ">
+          <p class="text-start font-bold ml-2 text-xl">Biblioteca</p>
           {% for category in categories %}
-            <li class="list-categories ml-2"><a href="{% url 'catalog' %}?category={{category.name}}" class="text-sm">{{category.name}}</a></li>
+            <li class="list-categories ml-2"><a href="{% url 'catalog' %}?category={{category.name}}" class="text-sm">➤ {{category.name}}</a></li>
           {% endfor %}
           <li class="list-categories ml-2"><a href="{% url 'catalog' %}" class="text-sm">Todos os livros</a></li>
       {% else %}
           <p>Nenuma categoria cadastrada</p>
       {% endif %}
+      {% if authors %}
+      <div class="flex flex-col justify-center h-auto pt-12">
+        <p class="text-xl font-bold text-start ml-2"> Autores</p>
+        {% for author in authors %}
+        <div class="flex flex-col justify-center">
+          <li class="list-categories ml-2"><a href="{% url 'catalog' %}?author={{author.name}}" class="text-sm">{{author.name}}</a></li>
+        </div>
+        {% endfor %}
+      </div> 
+    {% endif %} 
     </div>
+
+    
     
 
-      <div class=" flex flex-row justify-between flex-wrap">
+      <div class=" flex flex-row justify-between flex-wrap w-9/12 itre">
         <hr>
         {% if books %}
         {% for book in books %}
@@ -48,7 +61,6 @@
             <form action="{% url 'reserve_create' book.pk %}" method="post">
               {%  csrf_token %}
 
-              <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">Reservar</button>
             </form>
             {% else %}
             <p class="text-red-600">Indisponível para reserva</p>
@@ -61,6 +73,41 @@
         {% endif %}
       </div>
     </div>
+    <div class="banner-digital-library flex flex-col justify-center items-center">
+      <img src="{% static 'images/884_generated.jpg' %}" alt="">
+    </div>
+
+    <section class="">
+      <p class="text-xl text-start m-5">Fique por dentro da Tecnologia</p>
+      <hr>
+      <div class="categorie-informatic flex flex-row justify-between items-center">
+        {% for book_informatic in books_informatics %}
+          {% if forloop.counter <= 4 %}
+          <div class="flex flex-col justify-center items-center" style="width: 18rem;">
+            <a href="{% url 'book_detail' book_informatic.pk %}"><img src="{{book_informatic.image.url}}" class="card-img-top p-3" alt="..."></a>
+            <div class="card-body">
+              <a href="{% url 'book_detail' book_informatic.pk %}"><p class="card-title text-sm font-bold text-center" id="p">{{book_informatic.name}}</p></a>
+            </div>
+          </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <hr>
+  </section>
+
+  <section class="mt-16">
+    <p class="text-xl text-start  mt-16 mb-5  ml-5">Leia obras literárias</p>
+    <hr>
+    <div class="flex flex-row justify-between items-center mt-5">
+      {% for book_literary in books_literary %}
+      <div class="card-body flex flex-col justify-center items-center">
+        <img src="{{ book_literary.image.url }}" alt="">
+        <p class="card-text font-bold text-sm">{{book_literary.name}}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+      
   </main>
 {% endblock %}
 </body>
