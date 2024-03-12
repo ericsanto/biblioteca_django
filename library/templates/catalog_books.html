@@ -46,16 +46,16 @@
     
     
 
-      <div class=" flex flex-row justify-between flex-wrap w-9/12 itre">
+      <div class=" flex flex-row justify-center flex-wrap w-9/12 items-center">
         <hr>
         {% if books %}
         {% for book in books %}
-        <div class="card" style="width: 18rem;">
+        <div class="card m-5" style="width: 18rem;">
           <a href="{% url 'book_detail' book.pk %}"><img src="{{book.image.url}}" class="card-img-top p-3" alt="..."></a>
           <div class="card-body">
             <a href="{% url 'book_detail' book.pk %}"><p class="card-title text-lg font-bold" id="p">{{book.name}}</p></a>
             {% for author in book.author.all %}
-            <p class="card-text-p">Autor(s): {{author.name}}</p>
+            <p class="card-text text-xs ">Autor(s): {{author.name}}</p>
             {% endfor %}
             {% if book.quantity > 0 %}
             <form action="{% url 'reserve_create' book.pk %}" method="post">
@@ -78,12 +78,12 @@
     </div>
 
     <section class="">
-      <p class="text-xl text-start m-5">Fique por dentro da Tecnologia</p>
+      <p class="text-xl text-start m-5 font-bold pt-5">Fique por dentro da Tecnologia</p>
       <hr>
-      <div class="categorie-informatic flex flex-row justify-between items-center">
+      <div class="categorie-informatic flex flex-row justify-between items-center" >
         {% for book_informatic in books_informatics %}
           {% if forloop.counter <= 4 %}
-          <div class="flex flex-col justify-center items-center" style="width: 18rem;">
+          <div class="card flex flex-col justify-center items-center" style="width: 18rem;">
             <a href="{% url 'book_detail' book_informatic.pk %}"><img src="{{book_informatic.image.url}}" class="card-img-top p-3" alt="..."></a>
             <div class="card-body">
               <a href="{% url 'book_detail' book_informatic.pk %}"><p class="card-title text-sm font-bold text-center" id="p">{{book_informatic.name}}</p></a>
@@ -96,17 +96,32 @@
   </section>
 
   <section class="mt-16">
-    <p class="text-xl text-start  mt-16 mb-5  ml-5">Leia obras literárias</p>
+    <p class="text-xl text-start  mt-16 mb-5  ml-5 font-bold">Leia obras literárias</p>
     <hr>
-    <div class="flex flex-row justify-between items-center mt-5">
+    <div class="litelarity flex flex-row justify-center items-center mt-5">
       {% for book_literary in books_literary %}
-      <div class="card-body flex flex-col justify-center items-center">
+      <div class="card flex flex-col justify-center items-center m-5">
         <img src="{{ book_literary.image.url }}" alt="">
         <p class="card-text font-bold text-sm">{{book_literary.name}}</p>
       </div>
       {% endfor %}
     </div>
+    <hr>
+
+    <article>
+      <p class="text-xl text-start font-bold mt-16 mb-5 ml-5">Livros mais lidos</p>
+      <div class="container-more-reserve-book flex flex-row justify-center items-center"> 
+        {% for book in book_more_reserved.all %}
+          <div class="card flex flex-col justify-center items-center m-5 pt-5" style="width: 18rem;">
+            <img src="{{book.image.url}}" alt="">
+            <p class="pt-5 text-center pb-5 font-bold">{{book.name}}</p>
+          </div>
+        {% endfor %}
+      </div>
+    </article>
   </section>
+
+
       
   </main>
 {% endblock %}
