@@ -106,17 +106,19 @@
       </p>
 
       <div class="container">
-        {% for category_book in category_books %}
-          <div class="card" style="width: 18rem;">
-            <a href="{% url 'book_detail' category_book.pk %}"><img src="{{category_book.image.url}}" class="card-img-top" alt="..."></a>
-            <div class="card-body">
-              <a href="{% url 'book_detail' category_book.pk %}"><p class="card-title text-lg font-bold">{{category_book.name}}</p></a>
-              {% for author in category_book.author.all %}
-              <p class="card-text">Autor(s): {{author.name}}</p>
-              {% endfor %}
+        {% if category_books %}
+          {% for category_book in category_books %}
+            <div class="card flex flex-col justify-between items-center pt-5" style="width: 18rem;">
+              <a href="{% url 'book_detail' category_book.pk %}"><img src="{{category_book.image.url}}" class="card-img-top" alt="..."></a>
+              <div class="card-body">
+                <a href="{% url 'book_detail' category_book.pk %}"><p class="card-title text-lg font-bold">{{category_book.name}}</p></a>
+                {% for author in category_book.author.all %}
+                <p class="card-text">Autor(s): {{author.name}}</p>
+                {% endfor %}
+              </div>
             </div>
-          </div>
-        {% endfor %}
+          {% endfor %}
+        {% endif %}    
       </div>
       <hr>
 
