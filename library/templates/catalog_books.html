@@ -101,8 +101,8 @@
     <div class="litelarity flex flex-row justify-center items-center mt-5">
       {% for book_literary in books_literary %}
       <div class="card flex flex-col justify-center items-center m-5">
-        <img src="{{ book_literary.image.url }}" alt="">
-        <p class="card-text font-bold text-sm">{{book_literary.name}}</p>
+        <a href="{% url 'book_detail' book_literary.pk %}"><img src="{{ book_literary.image.url }}" alt=""></a>
+        <a href="{% url 'book_detail' book_literary.pk %}"><p class="card-text font-bold text-sm">{{book_literary.name}}</p></a>
       </div>
       {% endfor %}
     </div>
@@ -113,8 +113,8 @@
       <div class="container-more-reserve-book flex flex-row justify-center items-center"> 
         {% for book in book_more_reserved.all %}
           <div class="card flex flex-col justify-center items-center m-5 pt-5" style="width: 18rem;">
-            <img src="{{book.image.url}}" alt="">
-            <p class="pt-5 text-center pb-5 font-bold">{{book.name}}</p>
+            <a href="{% url 'book_detail' book.pk %}"><img src="{{book.image.url}}" alt=""></a>
+            <a href="{% url 'book_detail' book.pk %}"><p class="pt-5 text-center pb-5 font-bold">{{book.name}}</p></a>
           </div>
         {% endfor %}
       </div>
