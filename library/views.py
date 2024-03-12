@@ -95,13 +95,3 @@ def download_pdf(request, book_id):
         response = HttpResponse(pdf.read(), content_type='application/pdf')
         response['Content-Disposition'] = f'attachment; filename="{pdf_book.pdf_books.name}"'
         return response
-
-
-class BooksMoreReserveListView(ListView):
-    model = Book
-    template_name = 'catalog_books.html'
-    context_object_name = 'books_more_reserve'
-
-    def get_queryset(self):
-
-        return qty_reserves
