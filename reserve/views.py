@@ -1,11 +1,14 @@
 from django.shortcuts import redirect
-from django.views.generic import CreateView, ListView
+from django.views.generic import ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import ReserveBook
 from library.models import Book
 from user.models import UserCustom
 
 
+@login_required
 def reserve_book_create(request, book_id):
     if request.method == 'POST':
         book = Book.objects.get(id=book_id)
@@ -28,7 +31,7 @@ def reserve_book_create(request, book_id):
             messages.error(request, 'Você já tem um livro agendado')
             return redirect('catalog')
 
-
+@login_required
 def reserve_book_devolution(request, id_reserve):
     reserve = ReserveBook.objects.get(id=id_reserve)
     user = UserCustom.objects.get(email=request.user)
@@ -47,7 +50,7 @@ def reserve_book_devolution(request, id_reserve):
     return redirect('catalog')
 
 
-class ReserveBookListView(ListView):
+class ReserveBookListView(LoginRequiredMixin, ListView):
     model = ReserveBook
     template_name = 'list_book_reserve.html'
     context_object_name = 'books'
@@ -62,7 +65,7 @@ class ReserveBookListView(ListView):
         except user.DoesNotExist:
             messages.error(self.request, f'Usuário não existe')
 
-
+@login_required
 def renew_reserve_book(request, id_reserve):
     if request.method == 'POST':
         reserve = ReserveBook.objects.get(id=id_reserve)
