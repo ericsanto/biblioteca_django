@@ -52,6 +52,8 @@ class Book(models.Model):
         blank=True, null=True, upload_to='img_detail_books/')
     pdf_books = models.FileField(
         'PDF', blank=True, null=True, upload_to='documents/')
+    quantity_reserve = models.PositiveIntegerField(
+        'Quantidade de reservas', default=0, blank=True, null=True)
 
     def __str__(self):
         return self.name
