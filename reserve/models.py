@@ -42,5 +42,3 @@ class ReserveBook(models.Model):
             self.return_date_after_renew = None
 
         super().save(*args, **kwargs)
-
-
