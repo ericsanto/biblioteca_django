@@ -12,8 +12,8 @@
   {% if books %}
   <div class="flex flex-row flex-wrap justify-center items-center ">
     {% for book in books %}
-      <div class="card" style="width: 18rem;">
-        <img src="{{book.book.image.url}}" class="card-img-top" alt="...">
+      <div class="card flex flex-col justify-center items-center m-5" style="width: 18rem;">
+        <img src="{{book.book.image.url}}" class="card-img-top pt-5" alt="...">
         <div class="card-body">
           <a href="{% url 'book_detail' book.book.pk %}"><p class="card-title text-lg font-bold">{{book.book.name}}</p></a>
           {% for author in book.book.author.all %}
