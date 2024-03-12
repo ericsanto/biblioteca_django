@@ -149,6 +149,15 @@ img.second-image {
 div.card {
   text-align: center;
   margin-bottom: 20px;
+  box-shadow: 4px 4px 12px #aaaa;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: 0.3s all;
+  
+}
+
+div.card:hover {
+  transform: scale3d(1.1, 1.1, 1);
 }
 
 div.card:hover p.card-title {
@@ -374,6 +383,19 @@ a.w-full.border.border-black.rounded-full.text-center.m-8:hover {
   color: white;
   font-weight: bold;
 }
+
+.card.flex.flex-col.justify-center.items-center {
+  box-shadow: 4px 4px 12px #aaaa;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: 0.3s all;
+}
+
+.card.flex.flex-col.justify-center.items-center:hover {
+  transform: scale3d(1.1, 1.1, 1);
+}
+
+
 
 /* FIM DA ESTILIZAÇÃO DA PÁGINA (catalog_books.html) */
 
