@@ -46,11 +46,14 @@
               {% if book.quantity > 0 %}
                 <h3 class="warner-message">Disponível para reserva</h3>
                 <p class="quantity">Qtd: {{book.quantity}}</p>
+                {% if request.user.is_authenticated %}
                 <form action="{% url 'reserve_create' book.pk%}" method="post">
                   {% csrf_token %}
                   <button type="submit" class="disponibility">Reservar Livro</button>
                 </form>
-               
+                {% else %}
+                <p>Cdastre-se ou faça o login para reservar este livro</p>
+                {% endif %}
               {% else %}
                 <h3 class="not-disponibility"> Este Livro não está disponível para reserva</h3>
                 <p class="quantity">Qtd: {{book.quantity}}</p>
