@@ -11,27 +11,30 @@
   {% block content %}
   <main class="flex flex-col justify-center items-center w-auto h-auto pb-12">
    
-    <div class="img-login">
-      <img src="{% static 'images/3.png' %}" alt="" class="imagem-top">
-    </div>
+    <div class="flex flex-col justify-center items-center border border-black rounded-lg mt-16">
+      <div class="img-login">
+        <img src="{% static 'images/3.png' %}" alt="" class="imagem-top">
+      </div>
 
-    <div class="text-title-login">
-      <h2 class="title-login">Fazer login</h2>
-    </div>
-    <div class="login">
-      <form action="{% url 'login' %}" method="POST" autocomplete="off" class="form-login">
-        {% csrf_token %}
-        {{ form.errors }}
+    
+      <div class="text-title-login">
+        <h2 class="title-login">Fazer login</h2>
+      </div>
+      <div class="login">
+        <form action="{% url 'login' %}" method="POST" autocomplete="off" class="form-login">
+          {% csrf_token %}
+          {{ form.errors }}
 
-        <label for="{{ form.username.id_for_label }}" class="label-login">Email</label>
-        {{ form.username }}
+          <label for="{{ form.username.id_for_label }}" class="label-login">Email</label>
+          {{ form.username }}
 
-        <label for="{{ form.password.id_for_label }}" class="label-login">Senha</label>
-        {{ form.password }}
-        <a href="{% url 'reset_password' %}" class="mb-5">Esqueci senha</a>
-        <button type="submit" class="btn-login">Login</button>
-      </form>
-    </div>
+          <label for="{{ form.password.id_for_label }}" class="label-login">Senha</label>
+          {{ form.password }}
+          <a href="{% url 'reset_password' %}" class="mb-5">Esqueci senha</a>
+          <button type="submit" class="btn-login mb-5">Login</button>
+        </form>
+      </div>
+  </div>
    
   </main>
   {% endblock %}
