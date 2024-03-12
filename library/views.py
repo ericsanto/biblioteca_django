@@ -35,7 +35,10 @@ class CatalogBookListView(ListView):
         context['authors'] = Author.objects.all()[:7]
         context['books_informatics'] = Book.objects.filter(
             category__name='Computação, Informática e Mídias Digitais')
-        context['books_literary'] =Book.objects.filter(category__name='Literatura')
+        context['books_literary'] = Book.objects.filter(
+            category__name='Literatura')
+        context['book_more_reserved'] = Book.objects.all().order_by(
+            '-quantity_reserve')[:4]
         return context
 
     def get_queryset(self):
@@ -92,3 +95,13 @@ def download_pdf(request, book_id):
         response = HttpResponse(pdf.read(), content_type='application/pdf')
         response['Content-Disposition'] = f'attachment; filename="{pdf_book.pdf_books.name}"'
         return response
+
+
+class BooksMoreReserveListView(ListView):
+    model = Book
+    template_name = 'catalog_books.html'
+    context_object_name = 'books_more_reserve'
+
+    def get_queryset(self):
+
+        return qty_reserves
