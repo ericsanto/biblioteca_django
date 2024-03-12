@@ -1,5 +1,5 @@
 from django.shortcuts import redirect
-from django.views.generic import ListView
+from django.views.generic import CreateView, ListView
 from django.contrib import messages
 from .models import ReserveBook
 from library.models import Book
@@ -17,6 +17,7 @@ def reserve_book_create(request, book_id):
             )
             reserve.save()
             book.quantity -= 1
+            book.quantity_reserve += 1
             book.save()
             user.has_a_scheduling = True
             user.save()
@@ -75,10 +76,3 @@ def renew_reserve_book(request, id_reserve):
             messages.warning(request, 'Você já renovou esse livro uma vez')
         return redirect('catalog')
     return redirect('catalog')
-
-
-"""def book_suggestion_based_on_research(request, id_book):
-    if request.method == 'GET':
-        book = Book.objects.get(id=id_book)
-        category_book = book.category
-        print(category_book)"""
