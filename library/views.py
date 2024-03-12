@@ -1,5 +1,6 @@
 from django.views.generic import CreateView, DetailView, ListView, TemplateView
 from django.conf import settings
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
@@ -59,14 +60,14 @@ class CatalogBookListView(ListView):
         return books
 
 
-class CategoryCreateView(CreateView):
+class CategoryCreateView(PermissionRequiredMixin, CreateView):
     model = Category
     form_class = CategoryForm
     template_name = 'category_create.html'
     success_url = reverse_lazy('category_list_all')
 
 
-class BookCreateView(CreateView):
+class BookCreateView(PermissionRequiredMixin, CreateView):
     model = Book
     form_class = BookForm
     template_name = 'book_create.html'
