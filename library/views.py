@@ -1,5 +1,6 @@
 from django.views.generic import CreateView, DetailView, ListView, TemplateView
 from django.conf import settings
+from django.db.models import Max
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.http import HttpResponse
 from django.urls import reverse_lazy
@@ -28,11 +29,12 @@ class CatalogBookListView(ListView):
     paginate_by = 9
 
     def get_context_data(self, **kwargs):
+        user = self.request.user
         context = super().get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
-        if self.request.user.is_authenticated:
+        if user.is_authenticated:
             context['reserve'] = ReserveBook.objects.filter(
-                user=self.request.user)
+                user=user)
         context['authors'] = Author.objects.all()[:7]
         context['books_informatics'] = Book.objects.filter(
             category__name='Computação, Informática e Mídias Digitais')
@@ -40,6 +42,22 @@ class CatalogBookListView(ListView):
             category__name='Literatura')
         context['book_more_reserved'] = Book.objects.all().order_by(
             '-quantity_reserve')[:4]
+
+        if user.is_authenticated:
+            reservations = ReserveBook.objects.filter(user=user)
+
+            if reservations:
+                last_reserve_id = ReserveBook.objects.order_by(
+                    '-id')[:1].get().id
+                last_reserve_book = ReserveBook.objects.get(id=last_reserve_id)
+                last_category_reserved_book = last_reserve_book.book.category
+
+                book_id = last_reserve_book.book.id
+
+                last_reserve_category_book = Book.objects.filter(
+                    category__name=last_category_reserved_book).exclude(id=book_id)[:5]
+                context['suggestion'] = last_reserve_category_book
+
         return context
 
     def get_queryset(self):
