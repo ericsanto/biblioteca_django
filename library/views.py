@@ -1,10 +1,8 @@
 from django.views.generic import CreateView, DetailView, ListView, TemplateView
 from django.conf import settings
-from django.db.models import Max
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.http import HttpResponse
 from django.urls import reverse_lazy
-from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404
 from comment.models import Comment
 from .forms import BookForm, CategoryForm
@@ -48,14 +46,14 @@ class CatalogBookListView(ListView):
 
             if reservations:
                 last_reserve_id = ReserveBook.objects.order_by(
-                    '-id')[:1].get().id
+                    '-id', )[:1].get().id
                 last_reserve_book = ReserveBook.objects.get(id=last_reserve_id)
                 last_category_reserved_book = last_reserve_book.book.category
 
                 book_id = last_reserve_book.book.id
 
                 last_reserve_category_book = Book.objects.filter(
-                    category__name=last_category_reserved_book).exclude(id=book_id)[:5]
+                    category__name=last_category_reserved_book).order_by('-quantity_reserve').exclude(id=book_id)[:5]
                 context['suggestion'] = last_reserve_category_book
 
         return context
