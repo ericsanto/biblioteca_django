@@ -118,7 +118,24 @@
           </div>
         {% endfor %}
       </div>
+      <hr>
     </article>
+
+    {% if request.user.is_authenticated %}
+    <article>
+      <p class="text-xl text-start font-bold mt-16 mb-5 ml-5">Baseado na sua última escolha</p>
+      <div class="container-more-reserve-book flex flex-row justify-center items-center"> 
+        {% for book in suggestion.all %}
+          <div class="card flex flex-col justify-center items-center m-5 pt-5" style="width: 18rem;">
+            <a href="{% url 'book_detail' book.pk %}"><img src="{{book.image.url}}" alt=""></a>
+            <a href="{% url 'book_detail' book.pk %}"><p class="pt-5 text-center pb-5 font-bold">{{book.name}}</p></a>
+          </div>
+        {% endfor %}
+      </div>
+    </article>
+    {%  endif %}
+
+    
   </section>
 
 
