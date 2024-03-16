@@ -1,12 +1,13 @@
 from django.shortcuts import redirect
 from django.views.generic import CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from library.models import Book
 from .models import Comment
 from .forms import CommentBookForm
 
 
-class CommentCreateView(CreateView):
+class CommentCreateView(LoginRequiredMixin, CreateView):
     model = Comment
     form_class = CommentBookForm
     template_name = 'comment_book.html'
