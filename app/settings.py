@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-31iy832dxy8rsdn9s-)3)_ul_9le$kz*k+z7)y6jbsg9v2qqm*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -141,5 +141,3 @@ LOGIN_URL = 'login'
 LOGOUT_REDIRECT_URL = 'login'
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
-
-
