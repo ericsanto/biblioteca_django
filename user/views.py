@@ -1,8 +1,7 @@
-from django.shortcuts import render
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 from django.urls import reverse_lazy
 from .forms import UserForm
-from .models import UserCustom
+from .models import Profile, UserCustom
 
 
 class UserCreateView(CreateView):
@@ -10,3 +9,9 @@ class UserCreateView(CreateView):
     form_class = UserForm
     template_name = 'user_create.html'
     success_url = reverse_lazy('home')
+
+
+class ProfileUser(ListView):
+    model = Profile
+    template_name = 'profile_user.html'
+    context_object_name = 'profile'

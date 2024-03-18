@@ -3,5 +3,5 @@ from .views import ListFavoriteBookListView
 
 
 urlpatterns = [
-    path('', ListFavoriteBookListView.as_view(),  name='list_favorite_book')
+    path('', ListFavoriteBookListView.as_view(), name='list_favorite_book')
 ]

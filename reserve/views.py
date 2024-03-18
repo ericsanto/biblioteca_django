@@ -31,6 +31,7 @@ def reserve_book_create(request, book_id):
             messages.error(request, 'Você já tem um livro agendado')
             return redirect('catalog')
 
+
 @login_required
 def reserve_book_devolution(request, id_reserve):
     reserve = ReserveBook.objects.get(id=id_reserve)
@@ -43,7 +44,7 @@ def reserve_book_devolution(request, id_reserve):
         reserve.book.save()
         reserve.devolution = True
         reserve.save()
-        messages.success(request, f'Livro devolvido com sucesso.')
+        messages.success(request, f'Livro {reserve.book} devolvido com sucesso.')
         return redirect('catalog')
     else:
         messages.warning(request, 'Você não possui livro reservado')
@@ -63,15 +64,15 @@ class ReserveBookListView(LoginRequiredMixin, ListView):
             return resever_book_user
 
         except user.DoesNotExist:
-            messages.error(self.request, f'Usuário não existe')
+            messages.error(self.request, 'Usuário não existe')
+
 
 @login_required
 def renew_reserve_book(request, id_reserve):
     if request.method == 'POST':
         reserve = ReserveBook.objects.get(id=id_reserve)
-        print(reserve)
 
-        if reserve.renew_book == False:
+        if not reserve.renew_book:
             reserve.renew_book = True
             reserve.save()
             messages.success(request, 'Livro renovado com sucesso')

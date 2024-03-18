@@ -28,7 +28,7 @@ LANGUAGES = (
     ('DE', 'ALEMÃO'),
     ('EN-GB', 'INGLÊS(REINO UNIDO)'),
     ('JA-JA', 'JAPONÊS'),
-    ('RU',  'RUSSO'),
+    ('RU', 'RUSSO'),
     ('ZH-TW', 'CHINÊS'),
 )
 
@@ -38,11 +38,11 @@ class Book(models.Model):
     category = models.ForeignKey(
         Category, verbose_name='Categoria', on_delete=models.PROTECT)
     isbn = models.CharField('Número de identificação', max_length=255)
-    publication_year = models.DateField('Ano de  publicação')
+    publication_year = models.DateField('Ano de publicação')
     edition = models.CharField('Edição', max_length=4)
     pages_number = models.CharField('Número de páginas', max_length=4)
     synopsis = models.TextField('Sinopse')
-    language = models.CharField('Idioma',  choices=LANGUAGES, max_length=255)
+    language = models.CharField('Idioma', choices=LANGUAGES, max_length=255)
     quantity = models.PositiveIntegerField('Quantidade disponível')
     author = models.ManyToManyField(Author)
     image = models.ImageField(
