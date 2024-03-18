@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
-   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <title>Document</title>
 </head>
 <body>
@@ -18,8 +18,8 @@
   {% block header %}
     <header>
       <div class="logo">
-        <img src="{% static 'images/3.png' %}" class="img-top" alt="logo-biblioteca">
-        <h1 class="text">Biblioteca Municipal</h1>
+        <a href="{% url 'home' %}"><img src="{% static 'images/3.png' %}" class="img-top" alt="logo-biblioteca"></a>
+        <a href=" {% url 'home' %}"><h1 class="text">Biblioteca Municipal</h1></a>
       </div>
 
       <div class="form-search">
