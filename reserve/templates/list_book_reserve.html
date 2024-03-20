@@ -1,4 +1,5 @@
 {% extends 'home.html' %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,9 +43,12 @@
   </div>
   {% else %}
     <p> Nenhum livro cadastrado</p>
+    <script>
+      alertReserveBookDevolution()
+    </script>
   {% endif %}
   </main>
-  {% endblock %}
+{% endblock %}
 
 </body>
 </html>
