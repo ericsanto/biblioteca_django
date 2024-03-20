@@ -14,12 +14,15 @@
 <body>
 
 {% block content %}
-  {% for msg in messages %}
-    <div class="alert">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <strong>Olá!</strong> {{msg}}
-    </div>
-  {% endfor %}
+  {% block scripts %}
+    <script>
+      var messages = [
+        {% for msg in messages %}
+          "{{ msg }}",
+        {% endfor %}
+      ];
+    </script>
+  {% endblock %}
  
   <main class="flex flex-col mb-15">
     <div class="flex flex-row justify-start">
@@ -84,14 +87,14 @@
       <hr>
       <div class="categorie-informatic flex flex-row justify-between items-center" >
         {% for book_informatic in books_informatics %}
-          {% if forloop.counter <= 4 %}
+
           <div class="card flex flex-col justify-center items-center" style="width: 18rem;">
             <a href="{% url 'book_detail' book_informatic.pk %}"><img src="{{book_informatic.image.url}}" class="card-img-top p-3" alt="..."></a>
             <div class="card-body">
               <a href="{% url 'book_detail' book_informatic.pk %}"><p class="card-title text-sm font-bold text-center" id="p">{{book_informatic.name}}</p></a>
             </div>
           </div>
-          {% endif %}
+
         {% endfor %}
       </div>
       <hr>
