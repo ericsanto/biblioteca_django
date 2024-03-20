@@ -5,7 +5,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  {% block title %}
+  <title>{{book.name}}</title>
+  {% endblock %}
 </head>
 <body>
   {% block content %}
@@ -49,7 +51,7 @@
                 {% if request.user.is_authenticated %}
                 <form action="{% url 'reserve_create' book.pk%}" method="post">
                   {% csrf_token %}
-                  <button type="submit" class="disponibility">Reservar Livro</button>
+                  <button type="submit" class="disponibility" id="click" onclick="onClicekd()">Reservar Livro</button>
                 </form>
                 {% else %}
                 <p>Cdastre-se ou faça o login para reservar este livro</p>
@@ -150,7 +152,11 @@
         </div>
     </article>
   </section>
-  {% endblock %}
+  <script >
+    alertReserve()
+  </script>
+{% endblock %}
+
 
   {% block newslatter %}
   {% endblock %}
