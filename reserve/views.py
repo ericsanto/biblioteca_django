@@ -25,7 +25,7 @@ def reserve_book_create(request, book_id):
             user.has_a_scheduling = True
             user.save()
             messages.success(
-                request, f'Parabéns, você agendou o livo {book.name}')
+                request, f'Parabéns, você agendou o livo')
             return redirect('catalog')
         else:
             messages.error(request, 'Você já tem um livro agendado')
@@ -44,7 +44,7 @@ def reserve_book_devolution(request, id_reserve):
         reserve.book.save()
         reserve.devolution = True
         reserve.save()
-        messages.success(request, f'Livro {reserve.book} devolvido com sucesso.')
+        messages.success(request, f'Livro devolvido com sucesso.')
         return redirect('catalog')
     else:
         messages.warning(request, 'Você não possui livro reservado')
