@@ -24,7 +24,7 @@
     </script>
   {% endblock %}
  
-  <main class="flex flex-col mb-15">
+  <main class="main-catalog flex flex-col mb-15">
     <div class="flex flex-row justify-start">
       {% if categories %} 
         <div class="categories h-auto text-center ">
@@ -82,21 +82,21 @@
       <img src="{% static 'images/884_generated.jpg' %}" alt="">
     </div>
 
-    <section class="">
+    <section class="flex flex-col">
       <p class="text-xl text-start m-5 font-bold pt-5">Fique por dentro da Tecnologia</p>
       <hr>
-      <div class="categorie-informatic flex flex-row justify-between items-center" >
+      <div class="categorie-informatic flex flex-row justify-between items-center" id="card-all">
         {% for book_informatic in books_informatics %}
-
-          <div class="card flex flex-col justify-center items-center" style="width: 18rem;">
+          {% if forloop.counter0 <= 3 %}
+          <div class="card flex flex-col justify-center items-center" style="width: 18rem;" id="card-informatic" >
             <a href="{% url 'book_detail' book_informatic.pk %}"><img src="{{book_informatic.image.url}}" class="card-img-top p-3" alt="..."></a>
             <div class="card-body">
               <a href="{% url 'book_detail' book_informatic.pk %}"><p class="card-title text-sm font-bold text-center" id="p">{{book_informatic.name}}</p></a>
             </div>
           </div>
-
+          {% endif %}
         {% endfor %}
-      </div>
+          </div>
       <hr>
   </section>
 
@@ -105,7 +105,7 @@
     <hr>
     <div class="litelarity flex flex-row justify-center items-center mt-5">
       {% for book_literary in books_literary %}
-      <div class="card flex flex-col justify-center items-center m-5">
+      <div class="card flex flex-col justify-center items-center m-5" style="width: 18rem;">
         <a href="{% url 'book_detail' book_literary.pk %}"><img src="{{ book_literary.image.url }}" alt=""></a>
         <a href="{% url 'book_detail' book_literary.pk %}"><p class="card-text font-bold text-sm">{{book_literary.name}}</p></a>
       </div>
@@ -127,8 +127,8 @@
     </article>
 
     {% if request.user.is_authenticated %}
-    <article>
-      <p class="text-xl text-start font-bold mt-16 mb-5 ml-5">Baseado na sua última escolha</p>
+    <article class="article-col flex flex-col justify-center items-center text-center">
+      <p class="text-xl text-center  mt-16 mb-5 ml-5">Baseado na sua última escolha</p>
       <div class="container-more-reserve-book flex flex-row justify-center items-center"> 
         {% for book in suggestion.all %}
           <div class="card flex flex-col justify-center items-center m-5 pt-5" style="width: 18rem;">
@@ -139,12 +139,7 @@
       </div>
     </article>
     {%  endif %}
-
-    
-  </section>
-
-
-      
+  </section>  
   </main>
 {% endblock %}
 </body>
