@@ -38,7 +38,7 @@ function alertRenewReserve(){
 }
 
 document.addEventListener('DOMContentLoaded', function(){
-  alertRenewReserve()
+  alertRenewReserve();
 });
 
 function alertReserveBookDevolution() {
@@ -58,6 +58,20 @@ function alertReserveBookDevolution() {
 }
 
 document.addEventListener('DOMContentLoaded', function(){
-  alertReserveBookDevolution()
+  alertReserveBookDevolution();
+});
+
+function alertCommentCreate(){
+  if(document.body.textContent.includes('Comentário adicionado com sucesso! Obrigado por expor sua opinião')){
+    Swal.fire({
+      title: "Sucesso",
+      text: "Comentário adicionado com sucesso",
+      icon: "success",
+    })
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  alertCommentCreate();
 });
 
