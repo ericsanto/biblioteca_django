@@ -36,6 +36,9 @@
 
       <div class="button-login">
         {% if not request.user.is_authenticated %}
+        <a href="{% url 'login' %}" class="login-mobile">Login</a>
+        {% endif %}
+        {% if not request.user.is_authenticated %}
         <a href="{% url 'login' %}" class="a-login">Olá, faça seu login</a>
         {% else %}
         <form action="{% url 'logout' %}" method="post">
@@ -54,11 +57,11 @@
     
     </header>
     <nav class="nav-second">
-      <a href="{% url 'home' %}"><li class="buttons-header"><i class="fa fa-home"></i>  A Biblioteca</li></a>
-      <a href="{% url 'catalog' %}"><li class="buttons-header"><i class="fa fa-book"></i>  Catálogo</li></a>
-      <a href=""><li class="buttons-header"><i class="fa fa-newspaper"></i>  Serviços</li></a>
-      <a href=""><li class="buttons-header"><i class="fa fa-newspaper"></i>  Notícias</li></a>
-      <a href=""><li class="buttons-header"><i class="fa fa-check"></i>  Gestão</li></a>
+      <a href="{% url 'home' %}" class="nav-a"><li class="buttons-header"><i class="fa fa-home"></i>  A Biblioteca</li></a>
+      <a href="{% url 'catalog' %}" class="nav-a"><li class="buttons-header"><i class="fa fa-book"></i>  Catálogo</li></a>
+      <a href=""  class="nav-a"><li class="buttons-header"><i class="fa fa-newspaper"></i>  Serviços</li></a>
+      <a href=""  class="nav-a"><li class="buttons-header"><i class="fa fa-newspaper"></i>  Notícias</li></a>
+      <a href="" class="nav-a"><li class="buttons-header"><i class="fa fa-check"></i>  Gestão</li></a>
       {% if request.user.is_authenticated %}
       <a href="{% url 'book_reserve' user.pk %}" class="text-white"><i class="fa fa-database"></i> Meus livros reservados</a>
       {% endif %}
@@ -142,7 +145,6 @@
       <div class="flex flex-col justify-center items-center text-sm text-white pt-16">
         <p class="pb-16">© 2021-2024 Biblioteca.com, Inc. ou suas afiliadas</p>
         <p class="pb-16">Biblioteca Serviços do Brasil. | CNPJ 12.456.780/0056-123</p>
-        <p>Av. Ronnie Coleman, 2041, Torre 56, 80° andar - Lagarto - SE CEP: 49400-000| Fale conosco| ajuda-teste@teste.com.b</p>
       </div>
       </div>
   {% endblock %}
