@@ -51,14 +51,14 @@
     
     
 
-      <div class=" flex flex-row justify-center flex-wrap w-9/12 items-center">
+      <div class=" flex flex-row justify-center flex-wrap w-full items-center">
         <hr>
         {% if books %}
         {% for book in books %}
         <div class="card m-5" style="width: 18rem;">
           <a href="{% url 'book_detail' book.pk %}"><img src="{{book.image.url}}" class="card-img-top p-3" alt="..."></a>
           <div class="card-body">
-            <a href="{% url 'book_detail' book.pk %}"><p class="card-title text-lg font-bold" id="p">{{book.name}}</p></a>
+            <a href="{% url 'book_detail' book.pk %}" class="w-full text-center"><p class="card-title text-lg font-bold w-full text-center" id="p">{{book.name}}</p></a>
             {% for author in book.author.all %}
             <p class="card-text text-xs ">Autor(s): {{author.name}}</p>
             {% endfor %}
@@ -128,7 +128,7 @@
 
     {% if request.user.is_authenticated %}
     <article class="article-col flex flex-col justify-center items-center text-center">
-      <p class="text-xl text-center  mt-16 mb-5 ml-5">Baseado na sua última escolha</p>
+      <p class="text-xl text-center mt-16 mb-5 ml-5">Baseado na sua última escolha</p>
       <div class="container-more-reserve-book flex flex-row justify-center items-center"> 
         {% for book in suggestion.all %}
           <div class="card flex flex-col justify-center items-center m-5 pt-5" style="width: 18rem;">
