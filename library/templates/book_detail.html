@@ -89,15 +89,15 @@
       
     </section>
 
-    <section>
+    <section class="flex flex-col justify-center items-center">
       <hr>
       <p class="text-xl font-bold ml-12 pt-12">Produtos relacionados a este item
       </p>
 
-      <div class="container">
+      <div class="container w-full flex flex-row justify-center items-center">
         {% if category_books %}
           {% for category_book in category_books %}
-            <div class="card flex flex-col justify-between items-center pt-5" style="width: 18rem;">
+            <div class="card flex flex-col justify-between items-center pt-5 m-5" style="width: 18rem;">
               <a href="{% url 'book_detail' category_book.pk %}"><img src="{{category_book.image.url}}" class="card-img-top" alt="..."></a>
               <div class="card-body">
                 <a href="{% url 'book_detail' category_book.pk %}"><p class="card-title text-lg font-bold">{{category_book.name}}</p></a>
