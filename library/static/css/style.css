@@ -510,8 +510,24 @@ button#button-comment:hover {
   background-color: #c28638;
 }
 
+@media screen and (max-width:1000px){
+  div.container.w-full.flex.flex-row.justify-center.items-center {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 80%;
+  }
 
-@media screen and (max-width:550px){
+
+}
+
+@media screen and (max-width:1000px){
+
+  body {
+    width: 100vw;
+    margin: 0 auto;
+  }
 
   header{
     display: flex;
@@ -531,7 +547,13 @@ button#button-comment:hover {
     display: none;
   }
 
-  a.a-login {
+  a.login-mobile {
+    font-size: 20px;
+    margin-right: 30px;
+    color: white;
+  }
+
+  a.a-login{
     display: none;
   }
 
@@ -539,13 +561,17 @@ button#button-comment:hover {
     display: none;
   }
 
+  nav.nav-second {
+    display: none;
+  }
+
+
   form.form-top {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding-bottom: 30px;
-    margin-right: 30px;
+    height: 120px;
   }
 
   input.search {
@@ -564,12 +590,12 @@ button#button-comment:hover {
     display: flex;
     align-items: center;
     justify-content: center;
+    align-items: center;
   }
 
   div#card-all.categorie-informatic.flex.flex-row.justify-between.items-center {
     display: flex;
     flex-direction: column;
-    width: 13rem;
   }
 
   section.mt-16 {
@@ -593,6 +619,8 @@ button#button-comment:hover {
 
   div.card.flex.flex-col.justify-center.items-center {
     width: 13rem;
+    align-items: center;
+    text-align: center;
   }
 
   div.flex.flex-row.justify-around.items-center.pt-16.pb-16.text-sm {
@@ -670,8 +698,9 @@ button#button-comment:hover {
   
    a.w-full.border.border-black.rounded-full.text-center.m-8 {
     width: 168px;
-    margin-top: 10px;
+    margin: 0;
    }
+
 
    p.pb-2 {
     text-align: center;
@@ -690,9 +719,17 @@ button#button-comment:hover {
     width: 13rem;
   }
 
+  a.w-full.text-center {
+    margin-left: 70px;
+  }
+
    p.text-xl.font-bold.ml-12.pt-12 {
     margin: 0 auto;
     text-align: center;
+   }
+
+   p.card-title.text-lg.font-bold.w-full.text-center {
+    width: 100%;
    }
 
    p.ml-12 {
@@ -715,4 +752,57 @@ button#button-comment:hover {
    input#id_username, input#id_password  {
     width: 200px;
    }
+
+   p.pb-16 {
+    text-align: center;
+   }
+   
+   p.address-footer {
+    text-align: center;
+    display: inline;
+   }
 }
+
+
+
+@media screen and (max-width:1200px){
+  div.flex.flex.flex-row.justify-start {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  div.categories.h-auto.text-center {
+    width: 50%;
+    display: flex;
+  }
+
+  div.container-more-reserve-book.flex.flex-row.justify-center.items-center {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  div.categorie-informatic.flex.flex-row.justify-between.items-center {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+  }
+
+  div.container.w-full.flex.flex-row.justify-center.items-center {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 80%;
+  }
+
+
+}
+
